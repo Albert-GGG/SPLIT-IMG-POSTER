@@ -3,6 +3,7 @@ import os
 import sys
 from fpdf import FPDF
 
+##########################| CONFIGURATION |#############################
 
 img_name = 'lands.jpg'
 path_img = './IMGS' + '/' + img_name
@@ -10,16 +11,14 @@ path_img = './IMGS' + '/' + img_name
 img = cv.imread(path_img)
 
 if img is None:
-    sys.exit('No se pudo leer la imagen')
+    sys.exit('Image could not be read')
 
-# cv.imshow("Imagen", img)
-# k = cv.waitKey(0)
+rows = int(input('Number of rows: '))
+columns = int(input('Number of columns: '))
 
-div_alto = int(input('Divisiones alto: '))
-div_largo = int(input('Divisiones largo: '))
+height_region, width_region = int(img.shape[0] / rows), int(img.shape[1] / columns)
 
-height_region, width_region = int(img.shape[0] / div_alto), int(img.shape[1] / div_largo)
-
+# Name of new folder with split image
 path = './cropped_' + img_name.split('.')[0]
 
 if not os.path.exists(path):
@@ -27,12 +26,12 @@ if not os.path.exists(path):
 
 imgs = list()
 
-for h in range(div_alto):
-    for w in range(div_largo):
+for h in range(rows):
+    for w in range(columns):
         new_region = img[h * height_region:height_region * (h + 1), w * width_region:width_region * (w + 1)]
         imgs.append(new_region)
 
-
+# Save each region or block into a new folder
 for i in range(len(imgs)):
     cv.imwrite(path + '/' + f'parte_{i + 1}.png', imgs[i])
 
@@ -40,6 +39,7 @@ orientation = None
 pdf_width = None
 mm = 3.7795275591
 
+# Add image with maximum size to a letter size page inside a PDF
 if width_region / height_region > 1:
     orientation = 'L'
     pdf_width = 270
