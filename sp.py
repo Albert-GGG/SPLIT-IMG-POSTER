@@ -33,14 +33,12 @@ def mergeImg(regions):
     reg_width = hor_list[0].shape[1]
     blacksW = np.zeros((10, reg_width, 3), dtype=np.uint8)
 
-    for merged_row in range(len(hor_list)):
+    for merged_row in range(len(hor_list) - 1):
         hor_list[merged_row] = np.concatenate((hor_list[merged_row], blacksW), axis=0)
 
     merged_img = np.concatenate(([reg for reg in hor_list]), axis=0)
 
     return merged_img
-
-
 
 
 readImg = cv2.imread("IMGS/forest.jpg")
