@@ -1,13 +1,13 @@
 # Image Splitter
 
-## Video demo
+## Video demo: <https://www.youtube.com/watch?v=JrWsJwGG_gM>
 
-### Usage
+### Usage:
 
-Add image to "IMGS" folder, run the script and enter the desired number of rows and columns the image will be split into
+Add image to "IMGS" folder, run the "crop.py" script and enter the desired number of rows and columns the image will be split into
 NOTE: Use "forest.jpg" to try the program.
 
-#### Description
+#### Description:
 
 Python script that uses the OpenCv and fpdf libraries to split an image into any number of regions or blocks by specifying
 a number of rows and columns and create a PDF document containing all the regions of the image in each page.

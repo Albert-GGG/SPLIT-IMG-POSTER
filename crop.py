@@ -5,7 +5,7 @@ from fpdf import FPDF
 
 ##########################| CONFIGURATION |#############################
 
-img_name = 'forest.jpg'
+img_name = 'mount.jpg'
 path_img = './IMGS' + '/' + img_name
 
 img = cv.imread(path_img)
